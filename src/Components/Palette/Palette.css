@@ -5,3 +5,14 @@
 .Palette-colors {
   height: 90%;
 }
+
+.Palette-footer {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	height: 4vh;
+}
+
+.Palette-footer span {
+	margin-right: 15px;
+}
