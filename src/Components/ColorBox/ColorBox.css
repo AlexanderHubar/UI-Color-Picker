@@ -7,6 +7,10 @@
   margin-bottom: -4px;
 }
 
+.SingleColorPalette .ColorBox {
+	height: 50%;
+}
+
 .copy-button {
   width: 100px;
   height: 30px;
@@ -28,10 +32,15 @@
 }
 
 .ColorBox:hover .copy-button,
-.see-more {
+.see-more, .go-back {
   opacity: 1;
   transition: 0.5s;
   cursor: pointer;
+}
+
+.go-back a {
+	text-decoration: none;
+	color: white;
 }
 
 .see-more {
@@ -59,6 +68,14 @@
   letter-spacing: 1px;
   text-transform: uppercase;
   font-size: 12px;
+}
+
+.light-text {
+	color: white;
+}
+
+.ColorBox .dark-text {
+	color: rgba(0, 0, 0, 0.5);
 }
 
 .copy-overlay {

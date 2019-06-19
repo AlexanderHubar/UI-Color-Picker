@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import { Link, withRouter } from "react-router-dom";
+import chroma from "chroma-js";
 import "./ColorBox.css";
 
 class ColorBox extends Component {
@@ -18,8 +20,10 @@ class ColorBox extends Component {
     });
   }
   render() {
-    const { name, background } = this.props;
-    const { copied } = this.state;
+    const { name, background, colorId, paletteId, showLink } = this.props;
+		const { copied } = this.state;
+		const isDarkColor = chroma(background).luminance() <= 0.08;
+		const isLightColor = chroma(background).luminance() >= 0.8;
     return (
       <CopyToClipboard text={background} onCopy={this.changeCopyState}>
         <div className="ColorBox" style={{ background }}>
@@ -27,21 +31,28 @@ class ColorBox extends Component {
             className={`copy-overlay ${copied && "show"}`}
             style={{ background }}
           />
-					<div className={`copy-msg ${copied && "show"}`}>
-						<h1>Copied!</h1>
-						<p>{background}</p>
-					</div>
+          <div className={`copy-msg ${copied && "show"}`}>
+            <h1>Copied!</h1>
+            <p className={isLightColor ? 'dark-text' : null}	>{background}</p>
+          </div>
           <div className="copy-container">
             <div className="box-content">
-              <span>{name}</span>
+              <span className={isDarkColor ? 'light-text': null}>{name}</span>
             </div>
-            <button className="copy-button">Copy</button>
+            <button className={`copy-button ${isLightColor ? 'dark-text' : null}`}>Copy</button>
           </div>
-          <span className="see-more">More</span>
+          {showLink && (
+            <Link
+              to={`/palette/${paletteId}/${colorId}`}
+              onClick={e => e.stopPropagation()}
+            >
+              <span className={`see-more ${isLightColor ? 'dark-text' : null}`}>MORE</span>
+            </Link>
+          )}
         </div>
       </CopyToClipboard>
     );
   }
 }
 
-export default ColorBox;
+export default withRouter(ColorBox);

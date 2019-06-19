@@ -8,24 +8,26 @@ import "./Navbar.css";
 
 class Navbar extends Component {
   render() {
-    const { level, changeLevel, format, handleChange } = this.props;
+    const { level, changeLevel, handleChange, format, slider } = this.props;
     return (
       <header className="Navbar">
         <div className="logo">
           <Link to="/">UI Color Picker</Link>
         </div>
-        <div className="slider-container">
-          <span>Level: {level}</span>
-          <div className="slider">
-            <Slider
-              min={100}
-              max={900}
-              step={100}
-              value={level}
-              onChange={changeLevel}
-            />
+        {slider && (
+          <div className="slider-container">
+            <span>Level: {level}</span>
+            <div className="slider">
+              <Slider
+                min={100}
+                max={900}
+                step={100}
+                value={level}
+                onChange={changeLevel}
+              />
+            </div>
           </div>
-        </div>
+        )}
         <div className="select-container">
           <Select onChange={handleChange} value={format}>
             <MenuItem value="hex">HEX</MenuItem>

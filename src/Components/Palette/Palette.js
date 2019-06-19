@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import ColorBox from "../ColorBox/ColorBox";
-import Navbar from "../Navbar/Navbar";
 import Snackbar from "@material-ui/core/Snackbar";
+import Navbar from "../Navbar/Navbar";
+import Footer from "../PaletteFooter/PaletteFooter";
 import "./Palette.css";
 
 class Palette extends Component {
@@ -24,13 +25,16 @@ class Palette extends Component {
     });
   }
   render() {
-    const { colors, paletteName, emoji } = this.props.palette;
+    const { colors, paletteName, emoji, id } = this.props.palette;
     const { level, format, formatChanged } = this.state;
     const ColorBoxes = colors[this.state.level].map(color => (
       <ColorBox
         key={color.name}
-        background={color[this.state.format]}
+        background={color[format]}
         name={color.name}
+        colorId={color.id}
+        paletteId={id}
+        showLink
       />
     ));
     return (
@@ -40,8 +44,10 @@ class Palette extends Component {
           changeLevel={this.handleSliderChange}
           handleChange={this.changeFormat}
           format={format}
+          slider
         />
         <div className="Palette-colors">{ColorBoxes}</div>
+				<Footer paletteName={paletteName} emoji={emoji}/>
         <Snackbar
           anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
           open={formatChanged}
@@ -50,15 +56,10 @@ class Palette extends Component {
           }}
           message={
             <span id="message-id">
-              Format Changed to {format.toUpperCase()}!
+              Format Changed To {format.toUpperCase()}!
             </span>
           }
         />
-        <footer className="Palette-footer">
-          <span>
-            {paletteName} {emoji}
-          </span>
-        </footer>
       </div>
     );
   }
