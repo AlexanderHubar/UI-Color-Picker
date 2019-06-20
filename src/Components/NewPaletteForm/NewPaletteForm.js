@@ -105,6 +105,7 @@ class NewPaletteForm extends Component {
     this.addNewColor = this.addNewColor.bind(this);
     this.getRandomColor = this.getRandomColor.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.savePalette = this.savePalette.bind(this);
   }
 
   componentDidMount() {
@@ -153,6 +154,17 @@ class NewPaletteForm extends Component {
     });
   }
 
+  savePalette() {
+		let newName = "New Test Palette";
+    const newPalette = {
+      paletteName: newName,
+      id: newName.toLocaleLowerCase().replace(/ /g, '-'),
+      colors: this.state.colors
+    };
+    this.props.add(newPalette);
+    this.props.history.push("/");
+  }
+
   render() {
     const { classes } = this.props;
     const { open, color, colors, newName } = this.state;
@@ -183,6 +195,16 @@ class NewPaletteForm extends Component {
             >
               Create Palette
             </Typography>
+            <Button variant="contained" color="secondary">
+              Go back
+            </Button>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={this.savePalette}
+            >
+              Save palette
+            </Button>
           </Toolbar>
         </AppBar>
         <Drawer
@@ -251,7 +273,7 @@ class NewPaletteForm extends Component {
           <div className={classes.drawerHeader} />
           <div className={classes.boxes}>
             {colors.map(c => (
-              <DraggableColorBox name={c.name} color={c.color} />
+              <DraggableColorBox name={c.name} color={c.color} key={c.name} />
             ))}
           </div>
         </main>
