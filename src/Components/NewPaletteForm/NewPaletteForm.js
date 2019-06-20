@@ -107,6 +107,7 @@ class NewPaletteForm extends Component {
     this.getRandomColor = this.getRandomColor.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.savePalette = this.savePalette.bind(this);
+    this.deleteBox = this.deleteBox.bind(this);
   }
 
   componentDidMount() {
@@ -170,6 +171,11 @@ class NewPaletteForm extends Component {
     };
     this.props.add(newPalette);
     this.props.history.push("/");
+  }
+
+  deleteBox(name) {
+    let filtredArray = this.state.colors.filter(c => c.name !== name);
+    this.setState({ colors: filtredArray });
   }
 
   render() {
@@ -290,7 +296,12 @@ class NewPaletteForm extends Component {
           <div className={classes.drawerHeader} />
           <div className={classes.boxes}>
             {colors.map(c => (
-              <DraggableColorBox name={c.name} color={c.color} key={c.name} />
+              <DraggableColorBox
+                delete={this.deleteBox}
+                name={c.name}
+                color={c.color}
+                key={c.name}
+              />
             ))}
           </div>
         </main>
