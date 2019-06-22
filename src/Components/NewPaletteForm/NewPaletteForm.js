@@ -18,24 +18,6 @@ const styles = theme => ({
   root: {
     display: "flex"
   },
-  appBar: {
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    })
-  },
-  appBarShift: {
-    width: `calc(100% - ${drawerWidth}px)`,
-    marginLeft: drawerWidth,
-    transition: theme.transitions.create(["margin", "width"], {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen
-    })
-  },
-  menuButton: {
-    marginLeft: 12,
-    marginRight: 20
-  },
   hide: {
     display: "none"
   },
@@ -70,7 +52,8 @@ const styles = theme => ({
     marginLeft: 0
   },
   button: {
-    margin: theme.spacing(1)
+    margin: theme.spacing(1),
+    marginBottom: "1rem"
   },
   drawerContent: {
     display: "flex",
@@ -85,9 +68,24 @@ const styles = theme => ({
     width: "100%",
     height: "100%"
   },
-  Link: {
-    textDecoration: "none"
-  }
+  form: {
+    display: "flex",
+    width: "100%",
+    alignItems: "center",
+    flexDirection: "column"
+  },
+  colorPicker: {
+    width: "90% !important",
+    marginBottom: "1rem"
+  },
+  formColorPicker: {
+		display: "flex",
+		width: "90%",
+    flexDirection: "column"
+	},
+	formColorPickerField: {
+		marginBottom: "1rem"
+	}
 });
 
 class NewPaletteForm extends Component {
@@ -124,7 +122,7 @@ class NewPaletteForm extends Component {
     }));
   };
 
-  addNewColor = (colorName) => {
+  addNewColor = colorName => {
     let newColor = {
       color: this.state.color,
       name: colorName
@@ -167,7 +165,6 @@ class NewPaletteForm extends Component {
     return (
       <div className={classes.root}>
         <PaletteFormNav
-          classes={classes}
           color={color}
           isColorLight={isColorLight}
           open={open}
@@ -204,11 +201,11 @@ class NewPaletteForm extends Component {
             <ColorPickerForm
               classes={classes}
               color={color}
-							isPaletteFull={isPaletteFull}
-							getRandomColor={this.getRandomColor}
-							handleChangeComplete={this.handleChangeComplete}
-							addNewColor={this.addNewColor}
-							colors={colors}
+              isPaletteFull={isPaletteFull}
+              getRandomColor={this.getRandomColor}
+              handleChangeComplete={this.handleChangeComplete}
+              addNewColor={this.addNewColor}
+              colors={colors}
             />
           </div>
         </Drawer>

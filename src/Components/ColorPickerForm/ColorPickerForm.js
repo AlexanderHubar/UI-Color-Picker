@@ -36,7 +36,7 @@ class ColorPickerForm extends Component {
     } = this.props;
     const { newName } = this.state;
     return (
-      <div>
+      <div className={classes.form}>
         <Button
           variant="contained"
           color="primary"
@@ -45,9 +45,10 @@ class ColorPickerForm extends Component {
         >
           Random Color
         </Button>
-        <ChromePicker color={color} onChangeComplete={handleChangeComplete} />
-        <ValidatorForm onSubmit={this.handleSubmit}>
+        <ChromePicker className={classes.colorPicker} color={color} onChangeComplete={handleChangeComplete} />
+        <ValidatorForm className={classes.formColorPicker} onSubmit={this.handleSubmit}>
           <TextValidator
+						className={classes.formColorPickerField}
             value={newName}
             name="newName"
             onChange={this.handleChange}
@@ -56,12 +57,13 @@ class ColorPickerForm extends Component {
               "This field is required!",
               "Colors with the two same name not allow!",
               "Color already used!"
-            ]}
+						]}
+						placeholder="Color Name"
           />
           <Button
             type="submit"
             variant="contained"
-            style={{ background: isPaletteFull ? "darkgray" : color }}
+            style={{ background: isPaletteFull ? "darkgray" : color, height: '4rem' }}
             disabled={isPaletteFull ? true : false}
           >
             {isPaletteFull ? "Palette Full" : "Add Color"}
