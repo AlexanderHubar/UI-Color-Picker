@@ -11,7 +11,8 @@ const styles = {
     margin: "0 auto",
     display: "inline-block",
     position: "relative",
-    marginBottom: "-5px"
+		marginBottom: "-5px",
+		cursor: "grab"
   },
   boxContent: {
     display: "flex",
