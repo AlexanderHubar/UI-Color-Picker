@@ -25,8 +25,8 @@ const styles = theme => ({
     display: "flex",
     width: "100%",
     flexDirection: "row",
-		justifyContent: "space-between",
-		alignItems: "center"
+    justifyContent: "space-between",
+    alignItems: "center"
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -47,11 +47,11 @@ const styles = theme => ({
     textDecoration: "none"
   },
   NavBtns: {
-		marginRight: "1rem"
-	},
-	button: {
-		margin: "0 0.5rem"
-	}
+    marginRight: "1rem"
+  },
+  button: {
+    margin: "0 0.5rem"
+  }
 });
 
 class PaletteFormNav extends Component {
@@ -61,10 +61,15 @@ class PaletteFormNav extends Component {
       newPaletteName: "",
       formShowing: false
     };
+    this.showForm = this.showForm.bind(this);
+    this.hideForm = this.hideForm.bind(this);
   }
-  showForm = () => {
-		this.setState({ formShowing: true });
-  };
+  showForm() {
+    this.setState({ formShowing: true });
+  }
+  hideForm() {
+    this.setState({ formShowing: false });
+  }
   render() {
     const {
       classes,
@@ -103,17 +108,30 @@ class PaletteFormNav extends Component {
           </Toolbar>
           <div className={classes.NavBtns}>
             <Link className={classes.Link} to="/">
-              <Button className={classes.button} variant="contained" color="secondary">
+              <Button
+                className={classes.button}
+                variant="contained"
+                color="secondary"
+              >
                 Go back
               </Button>
             </Link>
-            <Button className={classes.button} variant="contained" color="primary" onClick={this.showForm}>
+            <Button
+              className={classes.button}
+              variant="contained"
+              color="primary"
+              onClick={this.showForm}
+            >
               Save
             </Button>
           </div>
         </AppBar>
         {this.state.formShowing && (
-          <PaletteMataForm palettes={palettes} handleSubmit={handleSubmit} />
+          <PaletteMataForm
+            palettes={palettes}
+            handleSubmit={handleSubmit}
+            hide={this.hideForm}
+          />
         )}
       </div>
     );

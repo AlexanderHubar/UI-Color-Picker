@@ -79,13 +79,13 @@ const styles = theme => ({
     marginBottom: "1rem"
   },
   formColorPicker: {
-		display: "flex",
-		width: "90%",
+    display: "flex",
+    width: "90%",
     flexDirection: "column"
-	},
-	formColorPickerField: {
-		marginBottom: "1rem"
-	}
+  },
+  formColorPickerField: {
+    marginBottom: "1rem"
+  }
 });
 
 class NewPaletteForm extends Component {
@@ -142,11 +142,12 @@ class NewPaletteForm extends Component {
     });
   };
 
-  savePalette = newPaletteName => {
+  savePalette = (newPaletteName, emoji) => {
     const newPalette = {
       paletteName: newPaletteName,
       id: newPaletteName.toLocaleLowerCase().replace(/ /g, "-"),
-      colors: this.state.colors
+      colors: this.state.colors,
+      emoji: emoji
     };
     this.props.add(newPalette);
     this.props.history.push("/");
