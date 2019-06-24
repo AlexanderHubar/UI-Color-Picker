@@ -1,10 +1,20 @@
 const styles = {
+	"@global": {
+		".fade-exit": {
+			opacity: 1
+		}, 
+		".fade-exit-active": {
+			opacity: 0,
+			transition: "opacity .5s ease-out"
+		}
+	},
   root: {
     backgroundColor: "blue",
     height: "100vh",
     display: "flex",
     alignItems: "flex-start",
-    justifyContent: "center"
+		justifyContent: "center",
+		overflow: "auto"
   },
   container: {
     width: "50%",

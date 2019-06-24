@@ -45,25 +45,37 @@ class ColorPickerForm extends Component {
         >
           Random Color
         </Button>
-        <ChromePicker className={classes.colorPicker} color={color} onChangeComplete={handleChangeComplete} />
-        <ValidatorForm className={classes.formColorPicker} onSubmit={this.handleSubmit}>
-          <TextValidator
-						className={classes.formColorPickerField}
-            value={newName}
-            name="newName"
-            onChange={this.handleChange}
-            validators={["required", "isColorNameUnique", "isColorUnique"]}
-            errorMessages={[
-              "This field is required!",
-              "Colors with the two same name not allow!",
-              "Color already used!"
-						]}
-						placeholder="Color Name"
-          />
+        <ChromePicker
+          className={classes.colorPicker}
+          color={color}
+          onChangeComplete={handleChangeComplete}
+        />
+        <ValidatorForm
+          className={classes.formColorPicker}
+          onSubmit={this.handleSubmit}
+        >
+          {!isPaletteFull && (
+            <TextValidator
+              className={classes.formColorPickerField}
+              value={newName}
+              name="newName"
+              onChange={this.handleChange}
+              validators={["required", "isColorNameUnique", "isColorUnique"]}
+              errorMessages={[
+                "This field is required!",
+                "Colors with the two same name not allow!",
+                "Color already used!"
+              ]}
+              placeholder="Color Name"
+            />
+          )}
           <Button
             type="submit"
             variant="contained"
-            style={{ background: isPaletteFull ? "darkgray" : color, height: '4rem' }}
+            style={{
+              background: isPaletteFull ? "darkgray" : color,
+              height: "4rem"
+            }}
             disabled={isPaletteFull ? true : false}
           >
             {isPaletteFull ? "Palette Full" : "Add Color"}
