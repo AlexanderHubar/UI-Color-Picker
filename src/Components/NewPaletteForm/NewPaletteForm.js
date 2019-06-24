@@ -146,7 +146,8 @@ class NewPaletteForm extends Component {
               axis="xy"
               colors={this.state.colors}
               handleDelete={this.deleteBox}
-              onSortEnd={this.onSortEnd}
+							onSortEnd={this.onSortEnd}
+							distance={20}
             />
           </div>
         </main>
