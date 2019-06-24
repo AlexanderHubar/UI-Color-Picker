@@ -12,6 +12,7 @@ import DraggableColorList from "../DraggableColorList/DraggableColorList";
 import arrayMove from "array-move";
 import ColorPickerForm from "../ColorPickerForm/ColorPickerForm";
 import styles from "../../styles/NewPaletteFormStyles";
+import seedColors from '../../Helpers/seedColors';
 
 class NewPaletteForm extends Component {
   static defaultProps = {
@@ -23,7 +24,7 @@ class NewPaletteForm extends Component {
     this.state = {
       open: true,
       color: "#646CBE",
-      colors: this.props.palettes[0].colors
+      colors: seedColors[0].colors
     };
   }
 

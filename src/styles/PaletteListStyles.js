@@ -1,3 +1,5 @@
+import bg from "../bg.svg";
+
 const styles = {
 	"@global": {
 		".fade-exit": {
@@ -9,12 +11,14 @@ const styles = {
 		}
 	},
   root: {
-    backgroundColor: "blue",
+		backgroundImage: `url(${bg})`,
+		backgroundColor: "#394bad",
     height: "100vh",
     display: "flex",
     alignItems: "flex-start",
 		justifyContent: "center",
 		overflow: "auto"
+		/* background by SVGBackgrounds.com */
   },
   container: {
     width: "50%",
